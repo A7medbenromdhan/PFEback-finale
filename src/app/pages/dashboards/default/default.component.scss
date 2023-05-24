@@ -1,0 +1,35 @@
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    background-color: lightgray;
+  }
+  
+  .circle::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: inset(0);
+  }
+  
+  .circle[data-progress]:before {
+    background-color: blue;
+  }
+    .card-title{
+      font-size: 20px !important;
+      color:#556ee6 !important;
+      text-align: center !important;
+    }
+   .card {
+    border: #556ee6 1px solid !important;
+   }
+     .table-bordered th, td{
+      text-align: initial !important;
+     }

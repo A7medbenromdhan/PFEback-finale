@@ -1,0 +1,176 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="card-title">Gestion des autorisations</h4>
+          <button class="btn btn-primary" (click)="openModal(demandeAutorisationModal)">Demander Autorisation</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <!-- <th>#</th> -->
+                <th>Heure de sortie</th>
+                <th>Heure de retour</th>
+                <th>Motif</th>
+                <th>Durée</th>
+                <th>Statut</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let autorisation of userAutorisations">
+                <!-- <td>{{ autorisation.id }}</td> -->
+                <td><h5>{{ autorisation.heureSortie | date: "HH:mm"}}</h5>{{ autorisation.heureSortie | date: "dd/MM/yyyy"}} </td>
+                <td><h5>{{ autorisation.heureRetour | date: "HH:mm"}}</h5>{{ autorisation.heureRetour | date: "dd/MM/yyyy" }}</td>
+                <td>{{ autorisation.motif }}</td>
+                <td>{{ autorisation.duree }}</td>
+                <td><button
+                    *ngIf="autorisation.statut === 'En Attente'"
+                    type="button"
+                    class="btn btn-warning btn-rounded"
+                  >
+                    {{ autorisation.statut }}
+                  </button>
+                  <button
+                    *ngIf="autorisation.statut === 'Approuvée'"
+                    type="button"
+                    class="btn btn-success btn-rounded"
+                  >
+                    {{ autorisation.statut }}
+                  </button>
+                  <button
+                    *ngIf="autorisation.statut === 'Refusée'"
+                    type="button"
+                    class="btn btn-danger btn-rounded"
+                  >
+                    {{ autorisation.statut }}
+                  </button></td>
+                <td>
+                  <div class="button-items" *ngIf="autorisation.statut =='En Attente'">
+                    <!-- <button type="button" class="btn btn-info" (click)="openModal(viewAutorisationModal)">
+                      <i class="bx bx-show-alt font-size-16 align-items-center-2"></i>
+                    </button> -->
+                    <button type="button" class="btn btn-warning" (click)="openModalEdit(editAutorisationModal,autorisation) ">
+                      <i class="bx bx-edit font-size-16 align-items-center-2"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="openModalEdit(deleteAutorisationModal, autorisation)">
+                      <i class="bx bx-trash font-size-16 align-items-center-2"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Demande Autorisation Modal -->
+<ng-template #demandeAutorisationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Demande d'autorisation</h5>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="demandeAutorisationForm" (ngSubmit)="onDemandeAutorisation()">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="heureSortie" class="form-label">Heure sortie</label>
+            <input type="time" class="form-control form-control-sm" id="heureSortie" formControlName="heureSortie" required>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="heureRetour" class="form-label">Heure retour</label>
+            <input type="time" class="form-control form-control-sm" id="heureRetour" formControlName="heureRetour" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="motif" class="form-label">Motif</label>
+            <input type="text" class="form-control" id="motif" formControlName="motif" required>
+          </div>
+        </div>
+        
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="duree" class="form-label">Durée</label>
+            <input type="text" class="form-control form-control-sm" id="duree" formControlName="duree" required>
+          </div>
+        </div>
+      </div> -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Fermer</button>
+        <button type="submit" class="btn btn-primary">Demander Autorisation</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+<!-- Edit Autorisation Modal -->
+<ng-template #editAutorisationModal let-modal let-autorisation="data">
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Modifier Autorisation</h5>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editAutorisationForm" (ngSubmit)="onEditAutorisation()">
+       <div class="row">
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="heureSortie" class="form-label">Heure sortie</label>
+            <input type="time" class="form-control form-control-sm" id="heureSortie" formControlName="heureSortie" required>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="heureRetour" class="form-label">Heure retour</label>
+            <input type="time" class="form-control form-control-sm" id="heureRetour" formControlName="heureRetour" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="motif" class="form-label">Motif</label>
+            <input type="text" class="form-control" id="motif" formControlName="motif" required>
+          </div>
+        </div>
+        
+      </div>
+      <!-- Form fields for editing autorisation -->
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Fermer</button>
+    <button type="submit" class="btn btn-primary">Modifier Autorisation</button>
+  </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Delete Autorisation Modal -->
+<ng-template #deleteAutorisationModal let-modal let-autorisation="data">
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Supprimer Autorisation</h5>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Etes-vous sûr de vouloir supprimer cette autorisation?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteAutorisationById()">Supprimer</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Annuler</button>
+  </div>
+</ng-template>

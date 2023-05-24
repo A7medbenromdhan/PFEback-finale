@@ -1,0 +1,612 @@
+<div class="container-fluid">
+  <app-page-title title="Gestion des congés" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Basic example</h4>
+          <p class="card-title-desc">For basic styling—light padding and
+            only horizontal dividers—add the base class <code>.table</code> to any
+            <code>&lt;table&gt;</code>.
+          </p>
+
+          <div class="table-responsive">
+            <table class="table mb-0">
+
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Dark table</h4>
+          <p class="card-title-desc">You can also invert the colors—with light text on dark backgrounds—with
+            <code>.table-dark</code>.
+          </p>
+
+          <div class="table-responsive">
+            <table class="table table-dark mb-0">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end row -->
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Table head</h4>
+          <p class="card-title-desc">Use one of two modifier classes to make <code>&lt;thead&gt;</code>s appear light or
+            dark gray.</p>
+
+          <div class="table-responsive">
+            <table class="table mb-0">
+
+              <thead class="table-light">
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Striped rows</h4>
+          <p class="card-title-desc">Use <code>.table-striped</code> to add zebra-striping to any table row within the
+            <code>&lt;tbody&gt;</code>.</p>
+
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end row -->
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Bordered table</h4>
+          <p class="card-title-desc">Add <code>.table-bordered</code> for borders on all sides of the table and cells.
+          </p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Borderless table</h4>
+          <p class="card-title-desc"> Add <code>.table-borderless</code> for a table without borders.</p>
+
+          <div class="table-responsive">
+            <table class="table table-borderless mb-0">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end row -->
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Hoverable rows</h4>
+          <p class="card-title-desc">Add <code>.table-hover</code> to enable a hover state on table rows within a
+            <code>&lt;tbody&gt;</code>.</p>
+
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Small table</h4>
+          <p class="card-title-desc"> Add <code>.table-sm</code> to make tables more compact by cutting cell padding in
+            half.</p>
+
+          <div class="table-responsive">
+            <table class="table table-sm m-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end row -->
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Contextual classes</h4>
+          <p class="card-title-desc">Use contextual classes to color table rows or individual cells.</p>
+
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Column heading</th>
+                  <th>Column heading</th>
+                  <th>Column heading</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-light">
+                  <th scope="row">1</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+
+                <tr class="table-success">
+                  <th scope="row">2</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+
+                <tr class="table-info">
+                  <th scope="row">3</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+
+                <tr class="table-warning">
+                  <th scope="row">4</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+
+                <tr class="table-danger">
+                  <th scope="row">5</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Captions</h4>
+          <p class="card-title-desc">A <code>&lt;caption&gt;</code> functions like a heading for a table. It helps users
+            with screen readers to find a table and understand what it’s about and decide if they want to read it.</p>
+
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <caption>List of users</caption>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end row -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Editer congé</h4>
+
+
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Matricule</th>
+                  <th>Date début</th>
+                  <th>Date reprise</th>
+                  <th>Durée</th>
+                  <th>Statut</th>
+                  <th>Type</th>
+                  <th>Option</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                  
+                  <td>Table cell</td>
+                  <td>
+                    <div class="button-items">
+                     
+                      <button type="button" class="btn btn-warning" (click)="openModal(content)"> 
+                        <i class="bx bx-edit font-size-16 align-items-center-2"></i>
+                      </button>
+                      <button type="button" class="btn btn-danger">
+                        <i class="bx bx-trash font-size-16 align-items-center-2"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        
+       
+        <!-- Modal Open -->
+        <ng-template #content role="document" let-modal>
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Editer Congé</h5>
+                <button type="button" class="btn-close" aria-hidden="true"
+                    (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="mb-3">
+                                <label for="name" class="form-label ">Matricule</label>
+                                <input type="text" class="form-control form-control-sm" id="name" placeholder="Table cell">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Date début</label>
+                                <input type="date" class="form-control form-control-sm" id="name" placeholder="Table cell">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Date reprise</label>
+                                <input type="date" class="form-control form-control-sm" id="name" placeholder="Table cell">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                          <div class="mb-3">
+                            <label for="name" class="form-label">Durée</label>
+                            <input type="text" class="form-control form-control-sm" id="name" placeholder="Table cell">
+                        </div>
+                      </div>
+                      <div class="col-lg-2">
+                        <div class="mb-2">
+                          <label for="name" class="form-label">Statut</label>
+                          <input type="text" class="form-control form-control-sm" id="name" placeholder="Table cell">
+                      </div>
+                    </div>
+                    <div class="col-lg-2">
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Type</label>
+                        <input type="text" class="form-control form-control-sm" id="name" placeholder="Table cell">
+                    </div>
+                  </div>
+                    </div>
+                    
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary ">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    
+
+  <!-- end row -->
+</div>

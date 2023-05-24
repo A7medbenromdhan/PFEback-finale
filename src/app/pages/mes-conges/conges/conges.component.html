@@ -1,0 +1,262 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="card-title">Gestion des congés</h4>
+          <button
+            class="btn btn-primary"
+            (click)="openModal(demandeCongeModal)"
+          >
+            Demander Congé
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Date début</th>
+                <th>Date Fin</th>
+                <th>Date reprise</th>
+                <th>Durée</th>
+                <th>Statut</th>
+                <th>Type</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let conge of userConges">
+                <td>{{ conge.dateDebut | date : "dd/MM/yyyy" }}</td>
+                <td>{{ conge.dateFin |date : "dd/MM/yyyy" }}</td>
+                <td>{{ conge.datedemande |date : "dd/MM/yyyy"}}</td>
+                <td>{{ conge.duree }}</td>
+                <td><button *ngIf="conge.statut ==='En Attente'" type="button" class="btn btn-warning btn-rounded" >{{ conge.statut }}</button>
+                    <button *ngIf="conge.statut ==='Approuvée'" type="button" class="btn btn-success btn-rounded">{{ conge.statut }}</button>
+                    <button *ngIf="conge.statut ==='Refusée'" type="button" class="btn btn-danger btn-rounded">{{ conge.statut }}</button>
+
+</td>
+                <td>{{ conge.typeCongeName }}</td>
+                <td>
+                  <div class="button-items" *ngIf="conge.statut =='En Attente'">
+                    <button
+                      type="button"
+                      class="btn btn-warning"
+                      (click)="openModalEdit(editCongeModal, conge)"
+                    >
+                      <i
+                        class="bx bx-edit font-size-16 align-items-center-2"
+                      ></i>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="openModalEdit(deleteCongeModal, conge)"
+                    >
+                      <i
+                        class="bx bx-trash font-size-16 align-items-center-2"
+                      ></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Congé Modal -->
+<ng-template #editCongeModal role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Editer Congé</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editCongeForm" (ngSubmit)="onEditConge()">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="dateDebut" class="form-label">Date début</label>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="dateDebut"
+              formControlName="dateDebut"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="dateFin" class="form-label">Date fin</label>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="dateFin"
+              formControlName="dateFin"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="duree" class="form-label">Durée</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="duree"
+              formControlName="duree"
+              required
+            />
+          </div>
+        </div>
+      </div> -->
+      <div class="row">
+       
+        <div class="col-md-10">
+          <div class="mb-3">
+            <label for="cause" class="form-label">Cause</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="cause"
+              formControlName="cause"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Editez Congé</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Demande Congé Modal -->
+<ng-template #demandeCongeModal role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Demande Congé</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="demandeCongeForm" (ngSubmit)="onDemandeConge()">
+      <div class="row">
+        <!-- <div class="col-lg-4"></div> -->
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="dateDebut" class="form-label">Date début</label>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="dateDebut"
+              formControlName="dateDebut"
+            />
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="dateFin" class="form-label">Date fin</label>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="dateFin"
+              formControlName="dateFin"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+         <!-- <div class="col-lg-4">
+           <div class="mb-3">
+            <label for="duree" class="form-label">Durée</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="duree"
+              formControlName="duree"
+            />
+          </div> 
+        </div>  -->
+         <div class="col-md-5">
+          <div class="mb-3">
+            <label for="typeConge" class="form-label">Type Congé</label>
+            <select
+              class="form-control form-control-sm"
+              id="typeConge"
+              formControlName="typeConge"
+            >
+              <option
+                *ngFor="let type of EtypeCongeLabels | keyvalue"
+                [value]="type.key"
+              >
+              
+              {{ type.value}}
+                
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="cause" class="form-label">Cause</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="cause"
+              formControlName="cause"
+            />
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-md-5">
+        <div class="mb-3">
+          <label for="datedemande" class="form-label">Date demande</label>
+          <input
+            type="date"
+            class="form-control form-control-sm"
+            id="datedemande"
+            formControlName="datedemande"
+          />
+        </div>
+      </div>
+
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Delete COnge Modal -->
+<ng-template #deleteCongeModal let-modal let-autorisation="data">
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Supprimer Autorisation</h5>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Etes-vous sûr de vouloir supprimer cette demande?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="onDeleteConge()">Supprimer</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Annuler</button>
+  </div>
+</ng-template>

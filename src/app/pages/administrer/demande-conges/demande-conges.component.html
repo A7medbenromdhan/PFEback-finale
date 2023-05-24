@@ -1,0 +1,266 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="card-title">Liste des demandes congés</h4>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Date début</th>
+                <th>Date Fin</th>
+                <th>Durée</th>
+                <th>Statut</th>
+                <th>Raison</th>
+                <th>Type</th>
+                <th>Date demande</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let conge of userConges">
+                <td>{{ conge.dateDebut | date : "dd/MM/yyyy" }}</td>
+                <td>{{ conge.dateFin | date : "dd/MM/yyyy" }}</td>
+                <td>{{ conge.duree }}</td>
+                <td>
+                  <button
+                    *ngIf="conge.statut === 'En Attente'"
+                    type="button"
+                    class="btn btn-warning btn-rounded"
+                  >
+                    {{ conge.statut }}
+                  </button>
+                  <button
+                    *ngIf="conge.statut === 'Approuvée'"
+                    type="button"
+                    class="btn btn-success btn-rounded"
+                  >
+                    {{ conge.statut }}
+                  </button>
+                  <button
+                    *ngIf="conge.statut === 'Refusée'"
+                    type="button"
+                    class="btn btn-danger btn-rounded"
+                  >
+                    {{ conge.statut }}
+                  </button>
+                </td>
+                <td>{{ conge.cause }}</td>
+                <td>{{ conge.typeCongeName }}</td>
+                <td>{{ conge.datedemande | date : "dd/MM/yyyy" }}</td>
+
+                <td>
+                  <div class="button-items">
+                    <button
+                      type="button"
+                      class="btn btn-warning"
+                      (click)="openModalEdit(editCongeModal, conge)"
+                    >
+                      <i
+                        class="bx bx-edit font-size-16 align-items-center-2"
+                      ></i>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="openModalEdit(deleteCongeModal, conge)"
+                    >
+                      <i
+                        class="bx bx-trash font-size-16 align-items-center-2"
+                      ></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Congé Modal -->
+<ng-template #editCongeModal role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Approuver /Refuser Congé</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editCongeForm" (ngSubmit)="onEditConge()">
+      
+      <div class="row">
+        <div class="col-md-3">
+          <label for="dateDebut" class="form-label">Employé</label>
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="dateDebut"
+            [value]="personnel.nom + ' ' + personnel.prenom"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label for="dateDebut" class="form-label">Email</label>
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="dateDebut"
+            [value]="personnel.email"
+            readonly
+          />
+        </div>
+      </div>
+<div class="row">
+        <div class="col-md-3">
+          <label for="dateDebut" class="form-label">Téléphone</label>
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="dateDebut"
+            [value]="personnel.numTel"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="dateDebut" class="form-label">Département</label>
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="dateDebut"
+            [value]="personnel.departement"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          
+            <label for="dateDebut" class="form-label">Date début</label> </div>
+            <div class="col-md-6">
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="dateDebut"
+              formControlName="dateDebut"
+              readonly
+            />
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+       
+            <label for="dateFin" class="form-label">Date fin</label></div>
+             <div class="col-md-6">
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="dateFin"
+              formControlName="dateFin"
+              readonly
+            />
+          
+        </div>
+      </div>
+      <div class="row">
+      
+          <div class="col-md-3">
+            <label for="statut" class="form-label">Changer statut</label></div>
+             <div class="col-md-6">
+            <select
+              formControlName="statut"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"
+              id="statut"
+              required
+            >
+              <option value="Approuvée">Approuver</option>
+              <option value="Refusée">Refuser</option>
+              <option value="En attente">En attente</option>
+            </select>
+            <div *ngIf="submitted && f.statut.errors" class="invalid-feedback">
+              <div *ngIf="f.statut.errors.required">
+                Merci de choisir le statut.
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="duree" class="form-label">Durée</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="duree"
+              formControlName="duree"
+              required
+            />
+          </div>
+        </div>
+      </div> -->
+
+      <div class="modal-footer">
+         <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.dismiss('Close click')"
+    >
+      Annuler
+    </button>
+        <button type="submit" class="btn btn-primary">Editez Congé</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Delete COnge Modal -->
+<ng-template #deleteCongeModal let-modal let-autorisation="data">
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Supprimer demande congé</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>Etes-vous sûr de vouloir supprimer cette demande?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="onDeleteConge()">
+      Supprimer
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.dismiss('Close click')"
+    >
+      Annuler
+    </button>
+  </div>
+</ng-template>

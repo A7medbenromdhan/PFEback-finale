@@ -1,0 +1,188 @@
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="card-title">Gestion des personnels</h4>
+            <button class="btn btn-primary" (click)="openAddPersonnelModal(addPersonnelModal)">Ajouter Personnel</button>
+
+          </div>
+  
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Login</th>
+                <th>Département</th>
+                <th>Numéro de téléphone</th>
+                <th>Poste</th>
+                <th>Rôle</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let personnel of personnels">
+                <td>{{ personnel.nom }}</td>
+                <td>{{ personnel.prenom }}</td>
+                <td>{{ personnel.email }}</td>
+                <td>{{ personnel.matriculeP }}</td>
+                <td>{{ personnel.departement }}</td>
+                <td>{{ personnel.numTel }}</td>
+                <td>{{ personnel.poste }}</td>
+                <td>{{ personnel.roles[0].nomRole }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="editPersonnel(personnel)">  <i class="bx bx-edit font-size-16 align-items-center-2"></i></button>
+
+
+                  <button class="btn btn-danger" (click)="deletePersonnel(personnel.idEmploye)">  <i class="bx bx-trash font-size-16 align-items-center-2"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Personnel Modal -->
+  <ng-template #addPersonnelModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter Personnel</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <!-- Add personnel form -->
+      <form [formGroup]="addPersonnelForm" (ngSubmit)="saveNewPersonnel()">
+        <div class="mb-3">
+                  <!-- <label for="lastname" class="form-label">Last Name</label> -->
+
+                  <input type="text" formControlName="nom" class="form-control"
+                  
+                    [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" id="nom"
+                    placeholder="Entrer le nom Personnel" />
+
+                  <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                    <div *ngIf="f.nom.errors.required">Le nom est requis</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label for="firstname" class="form-label">First Name</label> -->
+
+                  <input type="text" formControlName="prenom" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" id="prenom"
+                    placeholder="Entrez le prénom Personnel" />
+
+                  <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                    <div *ngIf="f.prenom.errors.required">Le prénom est requis</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label for="email" class="form-label">Email</label> -->
+
+                  <input type="email" formControlName="email" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" value="" placeholder="Email" />
+
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">L'e-mail est requis</div>
+                    <div *ngIf="f.email.errors.email">L'e-mail doit être une adresse e-mail valide</div>
+                  </div>
+                </div>
+
+                
+
+
+                <div class="mb-3">
+                  <!-- <label for="department" class="form-label">Department</label> -->
+
+                  <input type="text" formControlName="departement" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.departement.errors }" id="departement"
+                    placeholder="Entrez le département" />
+
+                  <div *ngIf="submitted && f.departement.errors" class="invalid-feedback">
+                    <div *ngIf="f.departement.errors.required">Le département est requis</div>
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                 
+
+                     <select formControlName="idChef" class="form-control"
+                   id="idChef"
+                    placeholder="Entrez le responsable">
+         
+          <option  *ngFor="let res of listChefs" [value]="res.idEmploye">{{res.nom}}   {{res.prenom}}</option>
+
+          
+          </select>
+
+                 
+                </div> 
+
+
+                <div class="mb-3">
+                  <!-- <label for="phone" class="form-label">Phone</label> -->
+
+                  <input type="text" formControlName="numTel" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.numTel.errors }" id="numTel"
+                    placeholder="Entrez le téléphone" />
+
+                  <div *ngIf="submitted && f.numTel.errors" class="invalid-feedback">
+                    <div *ngIf="f.numTel.errors.required">Le téléphone est requis</div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="mb-3">
+                  <!-- <label for="post" class="form-label">Post</label> -->
+
+                  <input type="text" formControlName="poste" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.poste.errors }" id="poste"
+                    placeholder="Poste" />
+
+                  <div *ngIf="submitted && f.poste.errors" class="invalid-feedback">
+                    <div *ngIf="f.poste.errors.required">Le poste est requis</div>
+                  </div>
+                </div>
+
+
+
+                
+
+                <div class="mb-3">
+                  <!-- <label for="password" class="form-label">Password</label> -->
+
+                  <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="password" value="" placeholder="Mot de passe" />
+
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Mot de passe requis</div>
+                  </div>
+                </div>
+
+          <div class="mb-3">
+          <label for="role" class="form-label">Rôle</label>
+          <select formControlName="roles" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.roles.errors }" id="roles">
+          <option value="3">ROLE_CHEF</option>
+          <option value="2">ROLE_ADMIN</option>
+          <option value="1">ROLE_PERSONNEL</option>
+          
+          </select>
+          <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+                    <div *ngIf="f.roles.errors.required">Le role est requis</div>
+                  </div>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel')">Annuler</button>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+          </form>
+          
+            </div>
+          </ng-template>

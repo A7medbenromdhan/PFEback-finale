@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="card-title">Consulter Service</h4>
+          </div>
+  
+          <div *ngIf="service">
+            <h5>Service Information</h5>
+            <p><strong>Service Name:</strong> {{ service.nomService }}</p>
+            <p><strong>Chef:</strong> {{ chefName }}</p>
+          </div>
+  
+          <div *ngIf="personnel.length > 0">
+            <h5>Personnel List</h5>
+            <ul>
+              <li *ngFor="let person of personnel">{{ person }}</li>
+            </ul>
+          </div>
+  
+          <div *ngIf="personnel.length === 0">
+            <p>No personnel assigned to this service.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
